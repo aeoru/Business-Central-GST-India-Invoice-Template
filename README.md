@@ -155,4 +155,4 @@ This extension is provided as-is. While every effort has been made to ensure GST
 
 ---
 
-**Made with ❤️ for the Indian Business Central community**
+**Made with ❤️ by [Aeoru](https://aeoru.com) for the Indian Business Central community**
