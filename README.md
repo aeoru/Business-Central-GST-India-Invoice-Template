@@ -45,12 +45,13 @@ This extension replaces the standard Business Central sales document reports wit
 
 ### Method 1: Download from Releases (Recommended)
 
-1. Download `GST.app` from the [Releases](https://github.com/aeoru/Business-Central-GST-India-Invoice-Template/releases/latest) page
-2. In Business Central, search for **Extension Management**
-3. Click **Manage** → **Upload Extension**
-4. Select the downloaded `.app` file
-5. Check the acknowledgment box and click **Deploy**
-6. Wait for installation to complete (check **Installation Status** if needed)
+1. Download `GST.zip` from the [Releases](https://github.com/aeoru/Business-Central-GST-India-Invoice-Template/releases/latest) page
+2. Extract the ZIP file to get `GST.app`
+3. In Business Central, search for **Extension Management**
+4. Click **Manage** → **Upload Extension**
+5. Select the `GST.app` file from the extracted folder
+6. Check the acknowledgment box and click **Deploy**
+7. Wait for installation to complete (check **Installation Status** if needed)
 
 ### Method 2: Build from Source
 
