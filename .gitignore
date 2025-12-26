@@ -1,0 +1,35 @@
+# Build output
+output/
+*.app
+
+# AL Package cache
+.alpackages/
+
+# VS Code (keep settings.json for project config)
+.vscode/launch.json
+.vscode/rad.json
+
+# Claude Code local settings
+.claude/
+
+# Playwright MCP screenshots
+.playwright-mcp/
+
+# Snapshots
+.snapshots/
+
+# PowerShell utility scripts (local use only)
+fix_rdlc.ps1
+fix_all_rdlc.ps1
+
+# Temporary files
+*.bak
+*.tmp
+*.log
+
+# Windows system files
+Thumbs.db
+Desktop.ini
+
+# macOS system files
+.DS_Store

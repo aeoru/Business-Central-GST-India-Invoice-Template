@@ -1,0 +1,55 @@
+{
+    "id": "94325313-3483-4c82-8b39-d12c5a611ff7",
+    "name": "GST Sales Documents India",
+    "publisher": "Custom Development",
+    "version": "2.8.4.0",
+    "brief": "Complete GST Sales Document Layouts for Indian Market",
+    "description": "Custom RDLC report layouts for all Sales documents (Quote, Order, Invoice, Credit Memo, Return Order) with Indian GST compliance including CGST, SGST, IGST, HSN/SAC codes, GSTIN details, and amount in words.",
+    "privacyStatement": "",
+    "EULA": "",
+    "help": "",
+    "url": "",
+    "logo": "",
+    "dependencies": [
+        {
+            "id": "437dbf0e-84ff-417a-965d-ed2bb9650972",
+            "name": "Base Application",
+            "publisher": "Microsoft",
+            "version": "27.0.0.0"
+        },
+        {
+            "id": "63ca2fa4-4f03-4f2b-a480-172fef340d3f",
+            "name": "System Application",
+            "publisher": "Microsoft",
+            "version": "27.0.0.0"
+        },
+        {
+            "id": "d3c551dd-5903-4194-b153-04ced9d29a2c",
+            "name": "India Tax Base",
+            "publisher": "Microsoft",
+            "version": "27.0.0.0"
+        },
+        {
+            "id": "db643212-b7fb-4dd4-b5a8-cb44ac714461",
+            "name": "India GST",
+            "publisher": "Microsoft",
+            "version": "27.1.41698.42988"
+        }
+    ],
+    "screenshots": [],
+    "platform": "27.0.0.0",
+    "idRanges": [
+        {
+            "from": 50100,
+            "to": 50199
+        }
+    ],
+    "resourceExposurePolicy": {
+        "allowDebugging": true,
+        "allowDownloadingSource": true,
+        "includeSourceInSymbolFile": true
+    },
+    "runtime": "16.0",
+    "target": "Cloud",
+    "application": "27.0.0.0"
+}

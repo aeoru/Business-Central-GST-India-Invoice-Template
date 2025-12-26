@@ -1,0 +1,2666 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:DataSourceID>invoice-datasource</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>7.75in</Height>
+        <ReportItems>
+          <!-- HEADER SECTION -->
+          <Rectangle Name="HeaderSection">
+            <ReportItems>
+              <!-- COMPANY INFO BOX -->
+              <Rectangle Name="CompanyInfoBox">
+                <ReportItems>
+                  <!-- From Header -->
+                  <Textbox Name="txtFromHdr">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>FROM</Value>
+                            <Style>
+                              <FontFamily>Arial</FontFamily>
+                              <FontSize>9pt</FontSize>
+                              <FontWeight>Bold</FontWeight>
+                              <Color>White</Color>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                      </Paragraph>
+                    </Paragraphs>
+                    <Top>0in</Top>
+                    <Left>0in</Left>
+                    <Height>0.25in</Height>
+                    <Width>3.85in</Width>
+                    <Style>
+                      <BackgroundColor>#003366</BackgroundColor>
+                      <PaddingLeft>5pt</PaddingLeft>
+                      <VerticalAlign>Middle</VerticalAlign>
+                    </Style>
+                  </Textbox>
+                  <!-- Company Logo -->
+                  <Image Name="CompanyLogo">
+                    <Source>Database</Source>
+                    <Value>=First(Fields!CompanyLogo.Value, "DataSet_Result")</Value>
+                    <MIMEType>image/png</MIMEType>
+                    <Sizing>FitProportional</Sizing>
+                    <Top>0.3in</Top>
+                    <Left>0.05in</Left>
+                    <Height>0.6in</Height>
+                    <Width>0.8in</Width>
+                  </Image>
+                  <!-- Company Name -->
+                  <Textbox Name="txtCompanyName">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>=First(Fields!CompanyName.Value, "DataSet_Result")</Value>
+                            <Style>
+                              <FontFamily>Arial</FontFamily>
+                              <FontSize>12pt</FontSize>
+                              <FontWeight>Bold</FontWeight>
+                              <Color>#003366</Color>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style>
+                          <TextAlign>Left</TextAlign>
+                        </Style>
+                      </Paragraph>
+                    </Paragraphs>
+                    <Top>0.3in</Top>
+                    <Left>0.9in</Left>
+                    <Height>0.25in</Height>
+                    <Width>2.9in</Width>
+                    <Style>
+                      <VerticalAlign>Middle</VerticalAlign>
+                    </Style>
+                  </Textbox>
+                  <!-- Company Address -->
+                  <Textbox Name="txtCompanyAddr1">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>=First(Fields!CompanyAddress.Value, "DataSet_Result")</Value>
+                            <Style>
+                              <FontFamily>Arial</FontFamily>
+                              <FontSize>8pt</FontSize>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style>
+                          <TextAlign>Left</TextAlign>
+                        </Style>
+                      </Paragraph>
+                    </Paragraphs>
+                    <Top>0.55in</Top>
+                    <Left>0.9in</Left>
+                    <Height>0.15in</Height>
+                    <Width>2.9in</Width>
+                  </Textbox>
+                  <!-- Company City -->
+                  <Textbox Name="txtCompanyAddr2">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>=First(Fields!CompanyCity.Value, "DataSet_Result") &amp; " - " &amp; First(Fields!CompanyPostCode.Value, "DataSet_Result") &amp; ", " &amp; First(Fields!CompanyStateName.Value, "DataSet_Result")</Value>
+                            <Style>
+                              <FontFamily>Arial</FontFamily>
+                              <FontSize>8pt</FontSize>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style>
+                          <TextAlign>Left</TextAlign>
+                        </Style>
+                      </Paragraph>
+                    </Paragraphs>
+                    <Top>0.7in</Top>
+                    <Left>0.9in</Left>
+                    <Height>0.15in</Height>
+                    <Width>2.9in</Width>
+                  </Textbox>
+                  <!-- Company GSTIN & PAN -->
+                  <Textbox Name="txtCompanyGSTIN">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>="GSTIN: " &amp; First(Fields!CompanyGSTIN.Value, "DataSet_Result") &amp; "  |  PAN: " &amp; First(Fields!CompanyPAN.Value, "DataSet_Result")</Value>
+                            <Style>
+                              <FontFamily>Arial</FontFamily>
+                              <FontSize>8pt</FontSize>
+                              <FontWeight>Bold</FontWeight>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                      </Paragraph>
+                    </Paragraphs>
+                    <Top>0.88in</Top>
+                    <Left>0.05in</Left>
+                    <Height>0.18in</Height>
+                    <Width>3.75in</Width>
+                    <Style>
+                      <PaddingTop>2pt</PaddingTop>
+                      <TopBorder>
+                        <Style>Solid</Style>
+                        <Color>#e0e0e0</Color>
+                      </TopBorder>
+                    </Style>
+                  </Textbox>
+                </ReportItems>
+                <Top>0in</Top>
+                <Left>0in</Left>
+                <Height>1.1in</Height>
+                <Width>3.85in</Width>
+                <Style>
+                  <Border>
+                    <Style>Solid</Style>
+                    <Color>#d0d0d0</Color>
+                  </Border>
+                </Style>
+              </Rectangle>
+              <!-- TAX INVOICE Title -->
+              <Textbox Name="txtTaxInvoice">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>SALES RETURN ORDER</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>16pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                          <Color>White</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Center</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0in</Top>
+                <Left>3.95in</Left>
+                <Height>0.4in</Height>
+                <Width>3.85in</Width>
+                <Style>
+                  <BackgroundColor>#003366</BackgroundColor>
+                  <VerticalAlign>Middle</VerticalAlign>
+                </Style>
+              </Textbox>
+              <!-- Invoice No Label -->
+              <Textbox Name="txtInvNoLbl">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Return Order No:</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>9pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.45in</Top>
+                <Left>3.95in</Left>
+                <Height>0.2in</Height>
+                <Width>1.2in</Width>
+                <Style>
+                  <PaddingLeft>5pt</PaddingLeft>
+                </Style>
+              </Textbox>
+              <!-- Invoice No Value -->
+              <Textbox Name="txtInvNoVal">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!ReturnOrderNo.Value, "DataSet_Result")</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>9pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                          <Color>#e74c3c</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.45in</Top>
+                <Left>5.15in</Left>
+                <Height>0.2in</Height>
+                <Width>1.3in</Width>
+              </Textbox>
+              <!-- Date Label -->
+              <Textbox Name="txtDateLbl">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Date:</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.45in</Top>
+                <Left>6.5in</Left>
+                <Height>0.2in</Height>
+                <Width>0.5in</Width>
+              </Textbox>
+              <!-- Date Value -->
+              <Textbox Name="txtDateVal">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Format(First(Fields!DocumentDate.Value, "DataSet_Result"), "dd-MMM-yyyy")</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.45in</Top>
+                <Left>7in</Left>
+                <Height>0.2in</Height>
+                <Width>0.8in</Width>
+              </Textbox>
+              <!-- Due Date Label -->
+              <Textbox Name="txtDueDateLbl">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Due Date:</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.68in</Top>
+                <Left>3.95in</Left>
+                <Height>0.2in</Height>
+                <Width>1.2in</Width>
+                <Style>
+                  <PaddingLeft>5pt</PaddingLeft>
+                </Style>
+              </Textbox>
+              <!-- Due Date Value -->
+              <Textbox Name="txtDueDateVal">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Format(First(Fields!DueDate.Value, "DataSet_Result"), "dd-MMM-yyyy")</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>9pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.68in</Top>
+                <Left>5.15in</Left>
+                <Height>0.2in</Height>
+                <Width>2.6in</Width>
+              </Textbox>
+              <!-- Place of Supply -->
+              <Textbox Name="txtPlaceOfSupplyLbl">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Place of Supply:</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.9in</Top>
+                <Left>3.95in</Left>
+                <Height>0.18in</Height>
+                <Width>1.2in</Width>
+                <Style>
+                  <PaddingLeft>5pt</PaddingLeft>
+                </Style>
+              </Textbox>
+              <Textbox Name="txtPlaceOfSupplyVal">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!PlaceOfSupply.Value, "DataSet_Result")</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.9in</Top>
+                <Left>5.15in</Left>
+                <Height>0.18in</Height>
+                <Width>2.6in</Width>
+              </Textbox>
+            </ReportItems>
+            <Top>0in</Top>
+            <Left>0in</Left>
+            <Height>1.15in</Height>
+            <Width>7.8in</Width>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+                <Color>#d0d0d0</Color>
+                <Width>1pt</Width>
+              </Border>
+            </Style>
+          </Rectangle>
+          <!-- CUSTOMER SECTION - BILL TO -->
+          <Rectangle Name="BillToSection">
+            <ReportItems>
+              <!-- Bill To Header -->
+              <Textbox Name="txtBillToHdr">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>BILL TO</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>9pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                          <Color>White</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0in</Top>
+                <Left>0in</Left>
+                <Height>0.25in</Height>
+                <Width>3.8in</Width>
+                <Style>
+                  <BackgroundColor>#003366</BackgroundColor>
+                  <PaddingLeft>5pt</PaddingLeft>
+                  <VerticalAlign>Middle</VerticalAlign>
+                </Style>
+              </Textbox>
+              <!-- Customer Name -->
+              <Textbox Name="txtCustName">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!CustomerName.Value, "DataSet_Result")</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>9pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.28in</Top>
+                <Left>0in</Left>
+                <Height>0.2in</Height>
+                <Width>3.8in</Width>
+                <Style>
+                  <PaddingLeft>5pt</PaddingLeft>
+                  <PaddingTop>3pt</PaddingTop>
+                </Style>
+              </Textbox>
+              <!-- Customer Address -->
+              <Textbox Name="txtCustAddr">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!CustomerAddress.Value, "DataSet_Result")</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.48in</Top>
+                <Left>0in</Left>
+                <Height>0.16in</Height>
+                <Width>3.8in</Width>
+                <Style>
+                  <PaddingLeft>5pt</PaddingLeft>
+                </Style>
+              </Textbox>
+              <!-- Customer City -->
+              <Textbox Name="txtCustCity">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!CustomerCity.Value, "DataSet_Result") &amp; " - " &amp; First(Fields!CustomerPostCode.Value, "DataSet_Result") &amp; ", " &amp; First(Fields!CustomerStateName.Value, "DataSet_Result")</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.64in</Top>
+                <Left>0in</Left>
+                <Height>0.16in</Height>
+                <Width>3.8in</Width>
+                <Style>
+                  <PaddingLeft>5pt</PaddingLeft>
+                </Style>
+              </Textbox>
+              <!-- Customer GSTIN -->
+              <Textbox Name="txtCustGSTIN">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>="GSTIN: " &amp; First(Fields!CustomerGSTIN.Value, "DataSet_Result")</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.82in</Top>
+                <Left>0in</Left>
+                <Height>0.16in</Height>
+                <Width>3.8in</Width>
+                <Style>
+                  <PaddingLeft>5pt</PaddingLeft>
+                </Style>
+              </Textbox>
+              <!-- Customer State -->
+              <Textbox Name="txtCustState">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>="State: " &amp; First(Fields!CustomerStateName.Value, "DataSet_Result") &amp; " (" &amp; First(Fields!CustomerStateCode.Value, "DataSet_Result") &amp; ")"</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.98in</Top>
+                <Left>0in</Left>
+                <Height>0.16in</Height>
+                <Width>3.8in</Width>
+                <Style>
+                  <PaddingLeft>5pt</PaddingLeft>
+                </Style>
+              </Textbox>
+            </ReportItems>
+            <Top>1.2in</Top>
+            <Left>0in</Left>
+            <Height>1.18in</Height>
+            <Width>3.85in</Width>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+                <Color>#d0d0d0</Color>
+              </Border>
+            </Style>
+          </Rectangle>
+          <!-- CUSTOMER SECTION - SHIP TO -->
+          <Rectangle Name="ShipToSection">
+            <ReportItems>
+              <!-- Ship To Header -->
+              <Textbox Name="txtShipToHdr">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>SHIP TO</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>9pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                          <Color>White</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0in</Top>
+                <Left>0in</Left>
+                <Height>0.25in</Height>
+                <Width>3.8in</Width>
+                <Style>
+                  <BackgroundColor>#003366</BackgroundColor>
+                  <PaddingLeft>5pt</PaddingLeft>
+                  <VerticalAlign>Middle</VerticalAlign>
+                </Style>
+              </Textbox>
+              <!-- Ship To Name -->
+              <Textbox Name="txtShipToName">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!ShipToName.Value, "DataSet_Result")</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>9pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.28in</Top>
+                <Left>0in</Left>
+                <Height>0.2in</Height>
+                <Width>3.8in</Width>
+                <Style>
+                  <PaddingLeft>5pt</PaddingLeft>
+                  <PaddingTop>3pt</PaddingTop>
+                </Style>
+              </Textbox>
+              <!-- Ship To Address -->
+              <Textbox Name="txtShipToAddr">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!ShipToAddress.Value, "DataSet_Result")</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.48in</Top>
+                <Left>0in</Left>
+                <Height>0.16in</Height>
+                <Width>3.8in</Width>
+                <Style>
+                  <PaddingLeft>5pt</PaddingLeft>
+                </Style>
+              </Textbox>
+              <!-- Ship To City -->
+              <Textbox Name="txtShipToCity">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!ShipToCity.Value, "DataSet_Result") &amp; " - " &amp; First(Fields!ShipToPostCode.Value, "DataSet_Result") &amp; ", " &amp; First(Fields!ShipToCountry.Value, "DataSet_Result")</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.64in</Top>
+                <Left>0in</Left>
+                <Height>0.16in</Height>
+                <Width>3.8in</Width>
+                <Style>
+                  <PaddingLeft>5pt</PaddingLeft>
+                </Style>
+              </Textbox>
+              <!-- Ship To GSTIN (same as customer for now) -->
+              <Textbox Name="txtShipToGSTIN">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>="GSTIN: " &amp; First(Fields!CustomerGSTIN.Value, "DataSet_Result")</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.82in</Top>
+                <Left>0in</Left>
+                <Height>0.16in</Height>
+                <Width>3.8in</Width>
+                <Style>
+                  <PaddingLeft>5pt</PaddingLeft>
+                </Style>
+              </Textbox>
+            </ReportItems>
+            <Top>1.2in</Top>
+            <Left>3.95in</Left>
+            <Height>1.18in</Height>
+            <Width>3.85in</Width>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+                <Color>#d0d0d0</Color>
+              </Border>
+            </Style>
+          </Rectangle>
+          <!-- PLACE OF SUPPLY BAR -->
+          <Rectangle Name="PlaceOfSupplyBar">
+            <ReportItems>
+              <!-- Place of Supply -->
+              <Textbox Name="txtPlaceOfSupplyBarLbl">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>="Place of Supply: " &amp; First(Fields!PlaceOfSupply.Value, "DataSet_Result") &amp; " (" &amp; First(Fields!PlaceOfSupplyCode.Value, "DataSet_Result") &amp; ")"</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0in</Top>
+                <Left>0in</Left>
+                <Height>0.25in</Height>
+                <Width>2.6in</Width>
+                <Style>
+                  <PaddingLeft>10pt</PaddingLeft>
+                  <VerticalAlign>Middle</VerticalAlign>
+                </Style>
+              </Textbox>
+              <!-- Supply Type -->
+              <Textbox Name="txtSupplyType">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>="Supply Type: " &amp; IIF(First(Fields!IsInterState.Value, "DataSet_Result"), "Inter-State", "Intra-State")</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Center</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0in</Top>
+                <Left>2.6in</Left>
+                <Height>0.25in</Height>
+                <Width>2.6in</Width>
+                <Style>
+                  <VerticalAlign>Middle</VerticalAlign>
+                </Style>
+              </Textbox>
+              <!-- Reverse Charge -->
+              <Textbox Name="txtReverseCharge">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>="Reverse Charge: " &amp; First(Fields!ReverseCharge.Value, "DataSet_Result")</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Right</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0in</Top>
+                <Left>5.2in</Left>
+                <Height>0.25in</Height>
+                <Width>2.5in</Width>
+                <Style>
+                  <PaddingRight>10pt</PaddingRight>
+                  <VerticalAlign>Middle</VerticalAlign>
+                </Style>
+              </Textbox>
+            </ReportItems>
+            <Top>2.42in</Top>
+            <Left>0in</Left>
+            <Height>0.25in</Height>
+            <Width>7.8in</Width>
+            <Style>
+              <BackgroundColor>#f8f9fa</BackgroundColor>
+              <Border>
+                <Style>Solid</Style>
+                <Color>#d0d0d0</Color>
+              </Border>
+            </Style>
+          </Rectangle>
+          <!-- LINE ITEMS TABLE -->
+          <Tablix Name="LineItemsTable">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>0.3in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.8in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.55in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.4in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.4in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.7in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.75in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.65in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.65in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.65in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.95in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <!-- Header Row -->
+                <TablixRow>
+                  <Height>0.28in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="hdrSNo">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>S.No</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <BackgroundColor>#003366</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="hdrDesc">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Description</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <BackgroundColor>#003366</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="hdrHSN">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>HSN/SAC</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <BackgroundColor>#003366</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="hdrQty">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Qty</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <BackgroundColor>#003366</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="hdrUOM">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Unit</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <BackgroundColor>#003366</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="hdrRate">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Rate</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <BackgroundColor>#003366</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="hdrTaxable">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Taxable</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <BackgroundColor>#003366</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="hdrCGST">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>CGST</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <BackgroundColor>#003366</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="hdrSGST">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>SGST</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <BackgroundColor>#003366</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="hdrIGST">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>IGST</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <BackgroundColor>#003366</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="hdrTotal">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Total</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <BackgroundColor>#003366</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <!-- Data Row -->
+                <TablixRow>
+                  <Height>0.22in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="txtSNo">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!SerialNo.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#f8f9fa", "White")</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Color>#e0e0e0</Color>
+                            </Border>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="txtDesc">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Description.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#f8f9fa", "White")</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>3pt</PaddingLeft>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Color>#e0e0e0</Color>
+                            </Border>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="txtHSN">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!HSNSACCode.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#f8f9fa", "White")</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Color>#e0e0e0</Color>
+                            </Border>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="txtQty">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Quantity.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <Format>N2</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#f8f9fa", "White")</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Color>#e0e0e0</Color>
+                            </Border>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="txtUOM">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!UnitOfMeasure.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#f8f9fa", "White")</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Color>#e0e0e0</Color>
+                            </Border>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="txtRate">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!UnitPrice.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <Format>N2</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#f8f9fa", "White")</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingRight>3pt</PaddingRight>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Color>#e0e0e0</Color>
+                            </Border>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="txtTaxable">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!TaxableAmount.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <Format>N2</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#f8f9fa", "White")</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingRight>3pt</PaddingRight>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Color>#e0e0e0</Color>
+                            </Border>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="txtCGST">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!CGSTAmount.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <Format>N2</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#f8f9fa", "White")</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingRight>3pt</PaddingRight>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Color>#e0e0e0</Color>
+                            </Border>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="txtSGST">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!SGSTAmount.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <Format>N2</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#f8f9fa", "White")</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingRight>3pt</PaddingRight>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Color>#e0e0e0</Color>
+                            </Border>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="txtIGST">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!IGSTAmount.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <Format>N2</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#f8f9fa", "White")</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingRight>3pt</PaddingRight>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Color>#e0e0e0</Color>
+                            </Border>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="txtLineTotal">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!LineTotal.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <Format>N2</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#f8f9fa", "White")</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingRight>3pt</PaddingRight>
+                            <Border>
+                              <Style>Solid</Style>
+                              <Color>#e0e0e0</Color>
+                            </Border>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="DetailGroup" />
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>DataSet_Result</DataSetName>
+            <Top>2.72in</Top>
+            <Left>0in</Left>
+            <Height>0.5in</Height>
+            <Width>7.8in</Width>
+          </Tablix>
+          <!-- TOTALS SECTION -->
+          <Rectangle Name="TotalsSection">
+            <ReportItems>
+              <!-- Sub Total -->
+              <Textbox Name="txtSubTotalLbl">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Sub Total</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Right</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0in</Top>
+                <Left>0in</Left>
+                <Height>0.22in</Height>
+                <Width>2.5in</Width>
+                <Style>
+                  <BackgroundColor>#f8f9fa</BackgroundColor>
+                  <PaddingRight>5pt</PaddingRight>
+                  <VerticalAlign>Middle</VerticalAlign>
+                </Style>
+              </Textbox>
+              <Textbox Name="txtSubTotalVal">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Last(Fields!TotalTaxableAmount.Value)</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                          <Format>N2</Format>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Right</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0in</Top>
+                <Left>2.5in</Left>
+                <Height>0.22in</Height>
+                <Width>1.3in</Width>
+                <Style>
+                  <BackgroundColor>#f8f9fa</BackgroundColor>
+                  <PaddingRight>5pt</PaddingRight>
+                  <VerticalAlign>Middle</VerticalAlign>
+                </Style>
+              </Textbox>
+              <!-- CGST Total -->
+              <Textbox Name="txtTotalCGSTLbl">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>CGST @9%</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Right</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.24in</Top>
+                <Left>0in</Left>
+                <Height>0.22in</Height>
+                <Width>2.5in</Width>
+                <Style>
+                  <PaddingRight>5pt</PaddingRight>
+                </Style>
+              </Textbox>
+              <Textbox Name="txtTotalCGSTVal">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Last(Fields!TotalCGSTAmount.Value)</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                          <Format>N2</Format>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Right</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.24in</Top>
+                <Left>2.5in</Left>
+                <Height>0.22in</Height>
+                <Width>1.3in</Width>
+                <Style>
+                  <PaddingRight>5pt</PaddingRight>
+                </Style>
+              </Textbox>
+              <!-- SGST Total -->
+              <Textbox Name="txtTotalSGSTLbl">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>SGST @9%</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Right</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.48in</Top>
+                <Left>0in</Left>
+                <Height>0.22in</Height>
+                <Width>2.5in</Width>
+                <Style>
+                  <PaddingRight>5pt</PaddingRight>
+                </Style>
+              </Textbox>
+              <Textbox Name="txtTotalSGSTVal">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Last(Fields!TotalSGSTAmount.Value)</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                          <Format>N2</Format>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Right</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.48in</Top>
+                <Left>2.5in</Left>
+                <Height>0.22in</Height>
+                <Width>1.3in</Width>
+                <Style>
+                  <PaddingRight>5pt</PaddingRight>
+                </Style>
+              </Textbox>
+              <!-- IGST Total -->
+              <Textbox Name="txtTotalIGSTLbl">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>IGST @18%</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Right</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.72in</Top>
+                <Left>0in</Left>
+                <Height>0.22in</Height>
+                <Width>2.5in</Width>
+                <Style>
+                  <PaddingRight>5pt</PaddingRight>
+                </Style>
+              </Textbox>
+              <Textbox Name="txtTotalIGSTVal">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Last(Fields!TotalIGSTAmount.Value)</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                          <Format>N2</Format>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Right</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.72in</Top>
+                <Left>2.5in</Left>
+                <Height>0.22in</Height>
+                <Width>1.3in</Width>
+                <Style>
+                  <PaddingRight>5pt</PaddingRight>
+                </Style>
+              </Textbox>
+              <!-- Grand Total -->
+              <Textbox Name="txtGrandTotalLbl">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>GRAND TOTAL</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>10pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                          <Color>White</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Right</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.98in</Top>
+                <Left>0in</Left>
+                <Height>0.3in</Height>
+                <Width>2.5in</Width>
+                <Style>
+                  <BackgroundColor>#003366</BackgroundColor>
+                  <VerticalAlign>Middle</VerticalAlign>
+                  <PaddingRight>5pt</PaddingRight>
+                </Style>
+              </Textbox>
+              <Textbox Name="txtGrandTotalVal">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>="Rs. " &amp; Format(Last(Fields!GrandTotal.Value), "N2")</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>10pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                          <Color>White</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Right</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.98in</Top>
+                <Left>2.5in</Left>
+                <Height>0.3in</Height>
+                <Width>1.3in</Width>
+                <Style>
+                  <BackgroundColor>#003366</BackgroundColor>
+                  <VerticalAlign>Middle</VerticalAlign>
+                  <PaddingRight>5pt</PaddingRight>
+                </Style>
+              </Textbox>
+            </ReportItems>
+            <Top>3.6in</Top>
+            <Left>4in</Left>
+            <Height>1.35in</Height>
+            <Width>3.8in</Width>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+                <Color>#d0d0d0</Color>
+              </Border>
+            </Style>
+          </Rectangle>
+          <!-- AMOUNT IN WORDS -->
+          <Textbox Name="txtAmountInWords">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>="Amount in Words: " &amp; Last(Fields!AmountInWords.Value)</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontSize>8pt</FontSize>
+                      <FontStyle>Italic</FontStyle>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+              </Paragraph>
+            </Paragraphs>
+            <Top>3.6in</Top>
+            <Left>0in</Left>
+            <Height>0.5in</Height>
+            <Width>3.9in</Width>
+            <Style>
+              <BackgroundColor>#f5f5f5</BackgroundColor>
+              <PaddingLeft>5pt</PaddingLeft>
+              <PaddingTop>3pt</PaddingTop>
+              <PaddingBottom>3pt</PaddingBottom>
+              <Border>
+                <Style>Solid</Style>
+                <Color>#d0d0d0</Color>
+              </Border>
+            </Style>
+          </Textbox>
+          <!-- FOOTER SECTION -->
+          <Rectangle Name="FooterSection">
+            <ReportItems>
+              <!-- Payment Terms Header -->
+              <Textbox Name="txtPaymentTermsHdr">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>PAYMENT TERMS</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0in</Top>
+                <Left>0in</Left>
+                <Height>0.22in</Height>
+                <Width>3.8in</Width>
+                <Style>
+                  <BackgroundColor>#e8f4f8</BackgroundColor>
+                  <PaddingLeft>5pt</PaddingLeft>
+                </Style>
+              </Textbox>
+              <Textbox Name="txtPaymentTermsVal">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=First(Fields!PaymentTermsDesc.Value, "DataSet_Result")</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.24in</Top>
+                <Left>0in</Left>
+                <Height>0.3in</Height>
+                <Width>3.8in</Width>
+                <Style>
+                  <PaddingLeft>5pt</PaddingLeft>
+                  <PaddingTop>2pt</PaddingTop>
+                </Style>
+              </Textbox>
+              <!-- Declaration Header -->
+              <Textbox Name="txtDeclarationHdr">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>DECLARATION</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.58in</Top>
+                <Left>0in</Left>
+                <Height>0.22in</Height>
+                <Width>3.8in</Width>
+                <Style>
+                  <BackgroundColor>#e8f4f8</BackgroundColor>
+                  <PaddingLeft>5pt</PaddingLeft>
+                </Style>
+              </Textbox>
+              <Textbox Name="txtDeclarationVal">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>We declare that this invoice shows the actual price of the goods/services described and that all particulars are true and correct.</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>7pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.82in</Top>
+                <Left>0in</Left>
+                <Height>0.55in</Height>
+                <Width>3.8in</Width>
+                <Style>
+                  <PaddingLeft>5pt</PaddingLeft>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingRight>5pt</PaddingRight>
+                </Style>
+              </Textbox>
+              <!-- Bank Details Header -->
+              <Textbox Name="txtBankHdr">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>BANK DETAILS</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>1.4in</Top>
+                <Left>0in</Left>
+                <Height>0.22in</Height>
+                <Width>3.8in</Width>
+                <Style>
+                  <BackgroundColor>#e8f4f8</BackgroundColor>
+                  <PaddingLeft>5pt</PaddingLeft>
+                </Style>
+              </Textbox>
+              <Textbox Name="txtBankDetails">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>="Bank: " &amp; First(Fields!BankName.Value, "DataSet_Result") &amp; Chr(10) &amp; "Branch: " &amp; First(Fields!BankBranchNo.Value, "DataSet_Result") &amp; Chr(10) &amp; "A/C No: " &amp; First(Fields!BankAccountNo.Value, "DataSet_Result") &amp; Chr(10) &amp; "IFSC: " &amp; First(Fields!BankIFSC.Value, "DataSet_Result") &amp; Chr(10) &amp; "SWIFT: " &amp; First(Fields!BankSWIFT.Value, "DataSet_Result")</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>7pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>1.64in</Top>
+                <Left>0in</Left>
+                <Height>0.5in</Height>
+                <Width>3.8in</Width>
+                <Style>
+                  <PaddingLeft>5pt</PaddingLeft>
+                  <PaddingTop>2pt</PaddingTop>
+                </Style>
+              </Textbox>
+              <!-- Vertical Divider Line -->
+              <Line Name="VerticalDivider">
+                <Top>0in</Top>
+                <Left>3.9in</Left>
+                <Height>2.2in</Height>
+                <Width>0in</Width>
+                <Style>
+                  <Border>
+                    <Style>Solid</Style>
+                    <Color>#d0d0d0</Color>
+                    <Width>1pt</Width>
+                  </Border>
+                </Style>
+              </Line>
+              <!-- For Company Name -->
+              <Textbox Name="txtForCompany">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>="For " &amp; First(Fields!CompanyName.Value, "DataSet_Result")</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>9pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                          <Color>#003366</Color>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Center</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0in</Top>
+                <Left>3.95in</Left>
+                <Height>0.35in</Height>
+                <Width>3.85in</Width>
+                <Style>
+                  <BackgroundColor>#f8f9fa</BackgroundColor>
+                  <PaddingTop>8pt</PaddingTop>
+                  <VerticalAlign>Middle</VerticalAlign>
+                </Style>
+              </Textbox>
+              <!-- Authorized Signatory -->
+              <Textbox Name="txtAuthSignatory">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Authorized Signatory</Value>
+                        <Style>
+                          <FontFamily>Arial</FontFamily>
+                          <FontSize>8pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Center</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <Top>1.85in</Top>
+                <Left>3.95in</Left>
+                <Height>0.25in</Height>
+                <Width>3.85in</Width>
+                <Style>
+                  <Border>
+                    <Style>Solid</Style>
+                    <Color>#003366</Color>
+                    <Width>1pt</Width>
+                  </Border>
+                  <TopBorder>
+                    <Style>Solid</Style>
+                    <Color>#003366</Color>
+                    <Width>1pt</Width>
+                  </TopBorder>
+                  <VerticalAlign>Middle</VerticalAlign>
+                </Style>
+              </Textbox>
+            </ReportItems>
+            <Top>5.1in</Top>
+            <Left>0in</Left>
+            <Height>2.25in</Height>
+            <Width>7.8in</Width>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+                <Color>#d0d0d0</Color>
+              </Border>
+            </Style>
+          </Rectangle>
+          <!-- FOOTER NOTE -->
+          <Textbox Name="txtFooterNote">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>This is a computer generated invoice and does not require a physical signature.</Value>
+                    <Style>
+                      <FontFamily>Arial</FontFamily>
+                      <FontSize>7pt</FontSize>
+                      <FontStyle>Italic</FontStyle>
+                      <Color>#7f8c8d</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <Top>7.45in</Top>
+            <Left>0in</Left>
+            <Height>0.2in</Height>
+            <Width>7.8in</Width>
+          </Textbox>
+        </ReportItems>
+      </Body>
+      <Width>8in</Width>
+      <Page>
+        <PageHeader>
+          <Height>0in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+        </PageHeader>
+        <PageFooter>
+          <Height>0.3in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="txtPageNumber">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>="Page " &amp; Globals!PageNumber &amp; " of " &amp; Globals!TotalPages</Value>
+                      <Style>
+                        <FontFamily>Arial</FontFamily>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <Top>0in</Top>
+              <Left>6in</Left>
+              <Height>0.25in</Height>
+              <Width>2in</Width>
+              <Style>
+                <PaddingRight>10pt</PaddingRight>
+              </Style>
+            </Textbox>
+          </ReportItems>
+        </PageFooter>
+        <PageHeight>11in</PageHeight>
+        <PageWidth>8.5in</PageWidth>
+        <LeftMargin>0.35in</LeftMargin>
+        <RightMargin>0.35in</RightMargin>
+        <TopMargin>0.35in</TopMargin>
+        <BottomMargin>0.35in</BottomMargin>
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="ReturnOrderTitleLbl">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ReturnOrderTitleLbl</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ReturnOrderTitleLbl</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ReturnOrderNoLbl">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ReturnOrderNoLbl</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ReturnOrderNoLbl</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ReturnDateLbl">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ReturnDateLbl</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ReturnDateLbl</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ReturnReasonLbl">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ReturnReasonLbl</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ReturnReasonLbl</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ReturnFromLbl">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ReturnFromLbl</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ReturnFromLbl</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>invoice-gst-india-50101</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="CompanyName">
+          <DataField>CompanyName</DataField>
+        </Field>
+        <Field Name="CompanyAddress">
+          <DataField>CompanyAddress</DataField>
+        </Field>
+        <Field Name="CompanyCity">
+          <DataField>CompanyCity</DataField>
+        </Field>
+        <Field Name="CompanyPostCode">
+          <DataField>CompanyPostCode</DataField>
+        </Field>
+        <Field Name="CompanyPhone">
+          <DataField>CompanyPhone</DataField>
+        </Field>
+        <Field Name="CompanyEmail">
+          <DataField>CompanyEmail</DataField>
+        </Field>
+        <Field Name="CompanyGSTIN">
+          <DataField>CompanyGSTIN</DataField>
+        </Field>
+        <Field Name="CompanyPAN">
+          <DataField>CompanyPAN</DataField>
+        </Field>
+        <Field Name="CompanyLogo">
+          <DataField>CompanyLogo</DataField>
+        </Field>
+        <Field Name="CompanyStateCode">
+          <DataField>CompanyStateCode</DataField>
+        </Field>
+        <Field Name="CompanyStateName">
+          <DataField>CompanyStateName</DataField>
+        </Field>
+        <Field Name="ReturnOrderNo">
+          <DataField>ReturnOrderNo</DataField>
+        </Field>
+        <Field Name="DocumentDate">
+          <DataField>DocumentDate</DataField>
+        </Field>
+        <Field Name="OrderDate">
+          <DataField>OrderDate</DataField>
+        </Field>
+        <Field Name="ExternalDocNo">
+          <DataField>ExternalDocNo</DataField>
+        </Field>
+        <Field Name="YourReference">
+          <DataField>YourReference</DataField>
+        </Field>
+        <Field Name="SalespersonCode">
+          <DataField>SalespersonCode</DataField>
+        </Field>
+        <Field Name="SalespersonName">
+          <DataField>SalespersonName</DataField>
+        </Field>
+        <Field Name="CustomerNo">
+          <DataField>CustomerNo</DataField>
+        </Field>
+        <Field Name="CustomerName">
+          <DataField>CustomerName</DataField>
+        </Field>
+        <Field Name="CustomerAddress">
+          <DataField>CustomerAddress</DataField>
+        </Field>
+        <Field Name="CustomerAddress2">
+          <DataField>CustomerAddress2</DataField>
+        </Field>
+        <Field Name="CustomerCity">
+          <DataField>CustomerCity</DataField>
+        </Field>
+        <Field Name="CustomerPostCode">
+          <DataField>CustomerPostCode</DataField>
+        </Field>
+        <Field Name="CustomerContact">
+          <DataField>CustomerContact</DataField>
+        </Field>
+        <Field Name="CustomerGSTIN">
+          <DataField>CustomerGSTIN</DataField>
+        </Field>
+        <Field Name="CustomerStateCode">
+          <DataField>CustomerStateCode</DataField>
+        </Field>
+        <Field Name="CustomerStateName">
+          <DataField>CustomerStateName</DataField>
+        </Field>
+        <Field Name="BillToName">
+          <DataField>BillToName</DataField>
+        </Field>
+        <Field Name="BillToAddress">
+          <DataField>BillToAddress</DataField>
+        </Field>
+        <Field Name="BillToAddress2">
+          <DataField>BillToAddress2</DataField>
+        </Field>
+        <Field Name="BillToCity">
+          <DataField>BillToCity</DataField>
+        </Field>
+        <Field Name="BillToPostCode">
+          <DataField>BillToPostCode</DataField>
+        </Field>
+        <Field Name="BillToContact">
+          <DataField>BillToContact</DataField>
+        </Field>
+        <Field Name="ShipToName">
+          <DataField>ShipToName</DataField>
+        </Field>
+        <Field Name="ShipToAddress">
+          <DataField>ShipToAddress</DataField>
+        </Field>
+        <Field Name="ShipToAddress2">
+          <DataField>ShipToAddress2</DataField>
+        </Field>
+        <Field Name="ShipToCity">
+          <DataField>ShipToCity</DataField>
+        </Field>
+        <Field Name="ShipToPostCode">
+          <DataField>ShipToPostCode</DataField>
+        </Field>
+        <Field Name="ShipToContact">
+          <DataField>ShipToContact</DataField>
+        </Field>
+        <Field Name="ShipToCountry">
+          <DataField>ShipToCountry</DataField>
+        </Field>
+        <Field Name="PlaceOfSupply">
+          <DataField>PlaceOfSupply</DataField>
+        </Field>
+        <Field Name="IsInterState">
+          <DataField>IsInterState</DataField>
+        </Field>
+        <Field Name="ReverseCharge">
+          <DataField>ReverseCharge</DataField>
+        </Field>
+        <Field Name="CurrencyCode">
+          <DataField>CurrencyCode</DataField>
+        </Field>
+        <Field Name="PaymentTermsCode">
+          <DataField>PaymentTermsCode</DataField>
+        </Field>
+        <Field Name="PaymentTermsDesc">
+          <DataField>PaymentTermsDesc</DataField>
+        </Field>
+        <Field Name="SubTotal">
+          <DataField>SubTotal</DataField>
+        </Field>
+        <Field Name="SubTotalFormat">
+          <DataField>SubTotalFormat</DataField>
+        </Field>
+        <Field Name="TotalDiscountAmount">
+          <DataField>TotalDiscountAmount</DataField>
+        </Field>
+        <Field Name="TotalDiscountAmountFormat">
+          <DataField>TotalDiscountAmountFormat</DataField>
+        </Field>
+        <Field Name="TotalTaxableAmount">
+          <DataField>TotalTaxableAmount</DataField>
+        </Field>
+        <Field Name="TotalTaxableAmountFormat">
+          <DataField>TotalTaxableAmountFormat</DataField>
+        </Field>
+        <Field Name="TotalCGSTAmount">
+          <DataField>TotalCGSTAmount</DataField>
+        </Field>
+        <Field Name="TotalCGSTAmountFormat">
+          <DataField>TotalCGSTAmountFormat</DataField>
+        </Field>
+        <Field Name="TotalSGSTAmount">
+          <DataField>TotalSGSTAmount</DataField>
+        </Field>
+        <Field Name="TotalSGSTAmountFormat">
+          <DataField>TotalSGSTAmountFormat</DataField>
+        </Field>
+        <Field Name="TotalIGSTAmount">
+          <DataField>TotalIGSTAmount</DataField>
+        </Field>
+        <Field Name="TotalIGSTAmountFormat">
+          <DataField>TotalIGSTAmountFormat</DataField>
+        </Field>
+        <Field Name="TotalGSTAmount">
+          <DataField>TotalGSTAmount</DataField>
+        </Field>
+        <Field Name="TotalGSTAmountFormat">
+          <DataField>TotalGSTAmountFormat</DataField>
+        </Field>
+        <Field Name="GrandTotal">
+          <DataField>GrandTotal</DataField>
+        </Field>
+        <Field Name="GrandTotalFormat">
+          <DataField>GrandTotalFormat</DataField>
+        </Field>
+        <Field Name="AmountInWords">
+          <DataField>AmountInWords</DataField>
+        </Field>
+        <Field Name="BankName">
+          <DataField>BankName</DataField>
+        </Field>
+        <Field Name="BankAccountNo">
+          <DataField>BankAccountNo</DataField>
+        </Field>
+        <Field Name="BankBranchNo">
+          <DataField>BankBranchNo</DataField>
+        </Field>
+        <Field Name="BankIFSC">
+          <DataField>BankIFSC</DataField>
+        </Field>
+        <Field Name="BankSWIFT">
+          <DataField>BankSWIFT</DataField>
+        </Field>
+        <Field Name="LineNo">
+          <DataField>LineNo</DataField>
+        </Field>
+        <Field Name="Type">
+          <DataField>Type</DataField>
+        </Field>
+        <Field Name="ItemNo">
+          <DataField>ItemNo</DataField>
+        </Field>
+        <Field Name="Description">
+          <DataField>Description</DataField>
+        </Field>
+        <Field Name="Description2">
+          <DataField>Description2</DataField>
+        </Field>
+        <Field Name="HSNSACCode">
+          <DataField>HSNSACCode</DataField>
+        </Field>
+        <Field Name="UnitOfMeasure">
+          <DataField>UnitOfMeasure</DataField>
+        </Field>
+        <Field Name="Quantity">
+          <DataField>Quantity</DataField>
+        </Field>
+        <Field Name="QuantityFormat">
+          <DataField>QuantityFormat</DataField>
+        </Field>
+        <Field Name="UnitPrice">
+          <DataField>UnitPrice</DataField>
+        </Field>
+        <Field Name="UnitPriceFormat">
+          <DataField>UnitPriceFormat</DataField>
+        </Field>
+        <Field Name="LineDiscountPercent">
+          <DataField>LineDiscountPercent</DataField>
+        </Field>
+        <Field Name="LineDiscountPercentFormat">
+          <DataField>LineDiscountPercentFormat</DataField>
+        </Field>
+        <Field Name="LineDiscountAmount">
+          <DataField>LineDiscountAmount</DataField>
+        </Field>
+        <Field Name="LineDiscountAmountFormat">
+          <DataField>LineDiscountAmountFormat</DataField>
+        </Field>
+        <Field Name="LineAmount">
+          <DataField>LineAmount</DataField>
+        </Field>
+        <Field Name="LineAmountFormat">
+          <DataField>LineAmountFormat</DataField>
+        </Field>
+        <Field Name="TaxableAmount">
+          <DataField>TaxableAmount</DataField>
+        </Field>
+        <Field Name="TaxableAmountFormat">
+          <DataField>TaxableAmountFormat</DataField>
+        </Field>
+        <Field Name="CGSTPercent">
+          <DataField>CGSTPercent</DataField>
+        </Field>
+        <Field Name="CGSTPercentFormat">
+          <DataField>CGSTPercentFormat</DataField>
+        </Field>
+        <Field Name="SGSTPercent">
+          <DataField>SGSTPercent</DataField>
+        </Field>
+        <Field Name="SGSTPercentFormat">
+          <DataField>SGSTPercentFormat</DataField>
+        </Field>
+        <Field Name="IGSTPercent">
+          <DataField>IGSTPercent</DataField>
+        </Field>
+        <Field Name="IGSTPercentFormat">
+          <DataField>IGSTPercentFormat</DataField>
+        </Field>
+        <Field Name="CGSTAmount">
+          <DataField>CGSTAmount</DataField>
+        </Field>
+        <Field Name="CGSTAmountFormat">
+          <DataField>CGSTAmountFormat</DataField>
+        </Field>
+        <Field Name="SGSTAmount">
+          <DataField>SGSTAmount</DataField>
+        </Field>
+        <Field Name="SGSTAmountFormat">
+          <DataField>SGSTAmountFormat</DataField>
+        </Field>
+        <Field Name="IGSTAmount">
+          <DataField>IGSTAmount</DataField>
+        </Field>
+        <Field Name="IGSTAmountFormat">
+          <DataField>IGSTAmountFormat</DataField>
+        </Field>
+        <Field Name="LineTotal">
+          <DataField>LineTotal</DataField>
+        </Field>
+        <Field Name="LineTotalFormat">
+          <DataField>LineTotalFormat</DataField>
+        </Field>
+        <Field Name="SerialNo">
+          <DataField>SerialNo</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

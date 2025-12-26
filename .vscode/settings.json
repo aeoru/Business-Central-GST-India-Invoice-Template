@@ -1,0 +1,10 @@
+{
+    "al.enableCodeActions": true,
+    "al.enableCodeAnalysis": true,
+    "al.backgroundCodeAnalysis": "Workspace",
+    "al.packageCachePath": ".alpackages",
+    "al.assemblyProbingPaths": [
+        ".netpackages"
+    ],
+    "al.browserSelectionRecordIdentifiers": true
+}
